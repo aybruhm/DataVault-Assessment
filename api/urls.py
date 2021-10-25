@@ -19,5 +19,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("posts.urls")),
-    path("v1/", include("posts.api.api_urls"))
+    path("v1/", include("posts.api.api_urls")),
+
+    # CKEDITOR URLs
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
