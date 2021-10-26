@@ -7,7 +7,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Calvin</title>
+    <title>DataVault Blog</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -45,7 +45,7 @@
     <header class="s-header">
 
         <div class="s-header__logo">
-            <a class="logo" href="index.html">
+            <a class="logo" href="{% url "posts:home_page" %}">
                 <img src="{% static "images/logo.svg" %}" alt="Homepage">
             </a>
         </div>
@@ -180,8 +180,12 @@
     <!-- Java Script
     ================================================== -->
     <script src="{% static "js/jquery-3.5.0.min.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="{% static "js/plugins.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
+
+
+    {% block inline_js %}{% endblock inline_js %}
 
     </body>
 
