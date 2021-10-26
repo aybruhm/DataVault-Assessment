@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
-    'rest_framework',
+    "rest_framework",
     "corsheaders",
+    "ckeditor"
 ]
 
 MIDDLEWARE = [
@@ -143,8 +144,10 @@ MEDIA_ROOT = "media"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
-    'awesome_ckeditor': {
-        'toolbar': 'Basic',
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 900,
     },
 }
 
