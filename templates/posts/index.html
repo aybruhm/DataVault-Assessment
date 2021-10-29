@@ -83,7 +83,8 @@
 
                 <div id="blog_posts"></div>
 
-            </div> <!-- end brick-wrapper -->
+            </div> 
+            <!-- end brick-wrapper -->
 
         </div> <!-- end masonry -->
 
@@ -97,10 +98,12 @@
 
 <script>
     const posts = document.getElementById("blog_posts");
+    const url = "http://127.0.0.1:8080/v1/api/";
+    const singleBlogUrl = "http://127.0.0.1:8080/single-post"
 
     axios({
     method: "GET",
-    url: "http://127.0.0.1:8000/v1/api/",
+    url: url,
     xstfCookieName: "csrftoken",
     xsrfHeaderName: "X-CSRFToken",
     headers: {
@@ -121,12 +124,12 @@
                         <img src="${post.image}"
                             alt="${post.title}">
                     </a>
-                </div> <!-- end entry__thumb -->
+                </div>
 
                 <div class="entry__text">
                     <div class="entry__header">
                         <h1 class="entry__title">
-                            <a href="">
+                            <a href="${singleBlogUrl}/${post.id}/">
                                 ${post.title}
                             </a>
                         </h1>
@@ -136,8 +139,8 @@
                             ${post.content}
                         </p>
                     </div>
-                    <a class="entry__more-link" href="">Learn More</a>
-                </div> <!-- end entry__text -->
+                    <a class="entry__more-link" href="${singleBlogUrl}/${post.id}/">Learn More</a>
+                </div>
 
             </article>`
             
