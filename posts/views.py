@@ -20,7 +20,4 @@ def single_post_page(request: HttpRequest, id) -> HttpResponse:
 
 
 def create_post_page(request: HttpRequest) -> HttpResponse:
-    context = {
-
-    }
-    return render(request, "posts/create-post.html", context)
+    return render(request, "posts/create-post.html")
