@@ -51,6 +51,7 @@
     const postTitle = document.getElementById("post__title");
     const postImage = document.getElementById("post_image");
     const postContent = document.getElementById("post_content");
+    const csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0];
     const url = "http://127.0.0.1:8080/v1/api/";
 
     var postData = {
@@ -65,25 +66,25 @@
         e.preventDefault();
         
         postData.title = postTitle.value;
-        postData.image = postImage.value;
+        postData.image = postImage.files[0].name;
         postData.content = postContent.value;
         postData.author = parseInt("{{ request.user.id }}");
 
         console.log(postData);
+        console.log(csrfToken);
             
         axios({
             method: "POST",
             url: url,
-            data: postData,
             xstfCookieName: "csrftoken",
             xsrfHeaderName: "X-CSRFToken",
+            data: JSON.stringify(postData),
             headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': 'csrftoken',
             'X-Requested-With': 'XMLHttpRequest'
-        
             }
-            })
+        })
         .then(res => {
             console.log(res);
         }).catch(err => {
