@@ -1,8 +1,10 @@
 from rest_framework import status
+from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from posts.models import Post
 from posts.api.serializers import PostSerializer
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 
@@ -10,6 +12,8 @@ class PostList(APIView):
     """
     List all posts, or create a new post.
     """
+    # permission_classes = [IsAuthenticatedOrReadOnly]
+
     def get(self, request, format=None):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)

@@ -5,6 +5,21 @@
 <!-- hero
     ================================================== -->
 <section id="hero" class="s-hero">
+    
+    <style>
+        div.blog__content {
+            max-width: 90% !important;
+        }
+
+        a.create__post {
+            font-size: 18px;
+            color: inherit !important;
+            font-family: inherit !important;
+            text-decoration: none !important;
+            text-transform: uppercase;
+            margin-right: 10px;
+        }
+    </style>
 
     <div class="s-hero__slider">
 
@@ -12,7 +27,7 @@
 
             <div class="s-hero__slide-bg" style="background-image: url('images/slide1-bg-3000.jpg');"></div>
 
-            <div class="row s-hero__slide-content animate-this">
+            <div class="row s-hero__slide-content blog__content animate-this">
                 <div class="column">
                     <div class="s-hero__slide-meta">
                         <span class="cat-links">
@@ -35,8 +50,8 @@
     </div> <!-- end s-hero__slide -->
 
     <div class="s-hero__social hide-on-mobile-small">
-        <p>Follow</p>
-        <span></span>
+        <p><a href="{% url "posts:create_post" %}" class="create__post" title="">Create Post</a></p>
+        <span class="mb-5"></span>
         <ul class="s-hero__social-icons">
             <li><a href="#0"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
             <li><a href="#0"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
