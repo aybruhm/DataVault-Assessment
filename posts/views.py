@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
-
+from .models import Post
 
 
 def home_page(request: HttpResponse) -> HttpResponse:
@@ -10,9 +10,11 @@ def home_page(request: HttpResponse) -> HttpResponse:
     return render(request, "posts/index.html", context)
 
 
-def single_post_page(request: HttpRequest) -> HttpResponse:
-    context = {
+def single_post_page(request: HttpRequest, id) -> HttpResponse:
+    post = Post.objects.get(id=id)
 
+    context = {
+        "post": post
     }
     return render(request, "posts/single-post.html", context)
 
