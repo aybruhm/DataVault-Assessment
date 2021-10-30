@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-^k1q*k9ip0vvt*ricq4)wg0jnhb9_m)-$x584gt6sfy!%!3rcu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1", "datavault-blog.herokuapp.com"
+]
 
 
 # Application definition
@@ -148,6 +150,13 @@ CKEDITOR_CONFIGS = {
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# REST FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
