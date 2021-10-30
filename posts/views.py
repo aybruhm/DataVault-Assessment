@@ -21,3 +21,13 @@ def single_post_page(request: HttpRequest, id) -> HttpResponse:
 
 def create_post_page(request: HttpRequest) -> HttpResponse:
     return render(request, "posts/create-post.html")
+
+
+def register_user(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "auth/register.html", context)
+
+
+def login_user(request: HttpRequest) -> HttpResponse:
+    context = {}
+    return render(request, "auth/login.html", context)
