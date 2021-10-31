@@ -14,7 +14,7 @@ class PostList(CsrfExemptMixin, APIView):
     """
     List all posts, or create a new post.
     """
-    authentication_classes = (CsrfExemptSessionAuthentication, BaseException)
+    authentication_classes = (CsrfExemptSessionAuthentication, BasicAuthentication)
 
     def get(self, request):
         posts = Post.objects.all()
