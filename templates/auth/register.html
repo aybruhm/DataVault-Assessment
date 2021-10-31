@@ -6,39 +6,51 @@ Register
 {% endblock title %}
 
 {% block auth_form %}
-<h2 class="register__innetext">Register</h2>
+<h2 class="register__innertext">Register</h2>
+
+{% if form.errors %}
+<h6 class="alert alert-warning register__innertext">
+    {{ form.errors }}
+</h6>
+{% endif %}
 
 <form method="POST" id="register__form">
     {% csrf_token %}
 
     <!-- First Input -->
     <div class="form-outline mb-4">
-        <input type="name" id="first_name" name="first_name" class="form-control" />
+        {{ form.first_name }}
         <label class="form-label" for="first_name">First name</label>
     </div>
 
     <!-- Last Input -->
     <div class="form-outline mb-4">
-        <input type="name" id="last_name" name="last_name" class="form-control" />
+        {{ form.last_name }}
         <label class="form-label" for="last_name">Last name</label>
     </div>
 
     <!-- Email Input -->
     <div class="form-outline mb-4">
-        <input type="email" id="email" name="email_address" class="form-control" />
+        {{ form.email }}
         <label class="form-label" for="email_address">Email address</label>
     </div>
 
     <!-- Username Input -->
     <div class="form-outline mb-4">
-        <input type="text" id="username" name="username" class="form-control" />
+        {{ form.username }}
         <label class="form-label" for="username">Username</label>
     </div>
 
     <!-- Password Input -->
     <div class="form-outline mb-4">
-        <input type="password" id="password" name="password" class="form-control" />
+        {{ form.password1 }}
         <label class="form-label" for="password">Password</label>
+    </div>
+
+    <!-- Password Input -->
+    <div class="form-outline mb-4">
+        {{ form.password2 }}
+        <label class="form-label" for="password">Confirm Password</label>
     </div>
 
     <!-- Submit button -->
