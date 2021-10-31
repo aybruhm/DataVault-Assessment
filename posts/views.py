@@ -27,13 +27,8 @@ def single_post_page(request: HttpRequest, id) -> HttpResponse:
     return render(request, "posts/single-post.html", context)
 
 
-@login_required
+@login_required(login_url="/login/")
 def create_post_page(request: HttpRequest) -> HttpResponse:
-    # messages.success(
-    #     request,
-    #     'You have successfully published your story! \
-    #             Our Editorial Team are looking into it.'
-    # )
     context = {
         "url": URL
     }
