@@ -2387,7 +2387,30 @@ form#register__form {
     padding-bottom: 100px !important;
 }
 
+form#create-new-post-form {
+    padding: 10px;
+}
+
+form#create-new-post-form>label {
+    font-size: 18px !important;
+    font-family: inherit !important;
+}
+
+input.create_title {
+    height: 40px !important;
+    width: 100% !important;
+}
+
+textarea.create_content {
+    height: 80px !important;
+    width: 100% !important;
+}
+
 @media screen and (max-width: 786px) {
+    form#create-new-post-form {
+        margin-top: 60px !important;
+    }
+
     article.brick {
         position: relative !important;
         top: auto !important;
