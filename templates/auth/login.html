@@ -11,10 +11,10 @@ Login
 <form method="POST" id="login__form">
     {% csrf_token %}
 
-    <!-- Email Input -->
+    <!-- Username Input -->
     <div class="form-outline mb-4">
-        <input type="email" id="email" name="email_address" class="form-control" />
-        <label class="form-label" for="email_address">Email address</label>
+        <input type="text" id="username" name="username" class="form-control" />
+        <label class="form-label" for="username">Username</label>
     </div>
 
     <!-- Password Input -->

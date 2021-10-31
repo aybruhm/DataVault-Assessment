@@ -5,7 +5,7 @@
 <!-- hero
     ================================================== -->
 <section id="hero" class="s-hero">
-    
+
     <style>
         div.blog__content {
             max-width: 90% !important;
@@ -73,6 +73,19 @@
         </button>
     </div> <!-- end s-hero__arrows -->
 
+    <!-- Messages -->
+    <div class="messages" id="messages">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="mt-3 alert alert-success">
+            <h5 class="m-0">
+                {{ message }}
+            </h5>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
 </section> <!-- end s-hero -->
 
 
@@ -98,7 +111,7 @@
 
                 <div id="blog_posts"></div>
 
-            </div> 
+            </div>
             <!-- end brick-wrapper -->
 
         </div> <!-- end masonry -->
@@ -113,29 +126,29 @@
 
 <script>
     const posts = document.getElementById("blog_posts");
-    const url = "http://127.0.0.1:8080/v1/api/";
-    const singleBlogUrl = "http://127.0.0.1:8080/single-post"
+    const url = "{{ url }}/v1/api/";
+    const singleBlogUrl = "{{ url }}/single-post"
 
     axios({
-    method: "GET",
-    url: url,
-    xstfCookieName: "csrftoken",
-    xsrfHeaderName: "X-CSRFToken",
-    headers: {
-    'Content-Type': 'application/json',
-    'X-CSRFToken': 'csrftoken',
-    'X-Requested-With': 'XMLHttpRequest'
+        method: "GET",
+        url: url,
+        xstfCookieName: "csrftoken",
+        xsrfHeaderName: "X-CSRFToken",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': 'csrftoken',
+            'X-Requested-With': 'XMLHttpRequest'
 
-    }
+        }
     }).then(res => {
         res = res.data;
-        
+
         // Loop through each blog post
         res.map(post => {
-            posts.innerHTML += `<article class="brick entry" data-aos="fade-up">
+            posts.innerHTML += `<article class="brick entry" style="">
 
                 <div class="entry__thumb">
-                    <a href="" class="thumb-link">
+                    <a href="${singleBlogUrl}/${post.id}/" class="thumb-link">
                         <img src="${post.image}"
                             alt="${post.title}">
                     </a>
@@ -158,14 +171,13 @@
                 </div>
 
             </article>`
-            
+
             console.log(post.id);
             console.log(post.title);
             console.log(post.image);
             console.log(post.content);
         })
     })
-
 </script>
 
 {% endblock inline_js %}
