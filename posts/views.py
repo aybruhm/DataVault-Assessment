@@ -1,11 +1,17 @@
-from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.http import HttpRequest, HttpResponse, request
 from .models import Post
+
+URL = "http://127.0.0.1:8000"
 
 
 def home_page(request: HttpResponse) -> HttpResponse:
+    
     context = {
-
+        "url": URL
     }
     return render(request, "posts/index.html", context)
 
@@ -14,13 +20,23 @@ def single_post_page(request: HttpRequest, id) -> HttpResponse:
     post = Post.objects.get(id=id)
 
     context = {
-        "post": post
+        "post": post,
+        "url": URL
     }
     return render(request, "posts/single-post.html", context)
 
 
+@login_required
 def create_post_page(request: HttpRequest) -> HttpResponse:
-    return render(request, "posts/create-post.html")
+    # messages.success(
+    #     request,
+    #     'You have successfully published your story! \
+    #             Our Editorial Team are looking into it.'
+    # )
+    context = {
+        "url": URL
+    }
+    return render(request, "posts/create-post.html", context)
 
 
 def register_user(request: HttpRequest) -> HttpResponse:
@@ -29,5 +45,24 @@ def register_user(request: HttpRequest) -> HttpResponse:
 
 
 def login_user(request: HttpRequest) -> HttpResponse:
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    if request.method == "POST":
+
+        user = authenticate(username=username, password=password)
+        if user.is_active:
+            login(request, user)
+            messages.success(
+                request, f"Welcome {username}, you are logged in.")
+            return redirect('posts:home_page')
+
     context = {}
     return render(request, "auth/login.html", context)
+
+
+@login_required
+def logout_user(request):
+    logout(request)
+    messages.success(request, "Logged out successfully!")
+    return redirect('posts:home_page')
