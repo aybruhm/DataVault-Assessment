@@ -1,6 +1,10 @@
 {% extends "auth/base.html" %}
 {% load static %}
 
+{% block title %}
+Create Post
+{% endblock title %}
+
 {% block content %}
 <h2 class="register__innetext">Create Post</h2>
 
@@ -25,7 +29,8 @@
     <div class="form-group col-12">
         <div class="mb-3">
             <label for="content">Content</label>
-            <textarea class="form-control create_content" id="post_content" rows="3" placeholder="Post content. . ."></textarea>
+            <textarea class="form-control create_content" id="post_content" rows="3"
+                placeholder="Post content. . ."></textarea>
         </div>
     </div>
 
