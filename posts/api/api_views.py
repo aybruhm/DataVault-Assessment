@@ -5,24 +5,30 @@ from rest_framework.response import Response
 from posts.models import Post
 from posts.api.serializers import PostSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from braces.views import CsrfExemptMixin
+from rest_framework.authentication import BasicAuthentication
+from .authentication import CsrfExemptSessionAuthentication
 
 
-
-class PostList(APIView):
+class PostList(CsrfExemptMixin, APIView):
     """
     List all posts, or create a new post.
     """
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    authentication_classes = (CsrfExemptSessionAuthentication, BaseException)
 
-    def get(self, request, format=None):
+    def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
+    def post(self, request):
         serializer = PostSerializer(data=request.data)
-        
+
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            message = "You have successfully published your story!"
+            return Response({"message": message, "data": serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# @api_view()
