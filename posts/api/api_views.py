@@ -12,7 +12,7 @@ class PostList(APIView):
     """
     List all posts, or create a new post.
     """
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request, format=None):
         posts = Post.objects.all()
