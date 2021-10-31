@@ -2,43 +2,29 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from posts.models import Post
-from posts.api.serializers import PostSerializer, CreatePostSerializer
+from posts.api.serializers import PostSerializer
 from braces.views import CsrfExemptMixin
 from rest_framework.authentication import BasicAuthentication
 from .authentication import CsrfExemptSessionAuthentication
-from rest_framework.parsers import MultiPartParser, FormParser
 
 
-class PostList(CsrfExemptMixin, APIView):
+class PostView(CsrfExemptMixin, APIView):
     """
     List all posts, or create a new post.
     """
     authentication_classes = (
         CsrfExemptSessionAuthentication, BasicAuthentication)
-    parser_classes = (MultiPartParser, FormParser,)
 
     def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(posts, many=True)
-        return Response(serializer.data, status=status.HTTP_202_ACCEPTED    )
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
     def post(self, request, format=None):
-        serializer = CreatePostSerializer(data=request.data)
-        print(f"Invalid Serializer: ", serializer.is_valid)
+        serializer = PostSerializer(data=request.data)
 
         if serializer.is_valid():
-
-            title = serializer.validated_data.get("title")
-            author = serializer.validated_data.get("author")
-            image = serializer.validated_data.get("image")
-            content = serializer.validated_data.get("content")
-
-            print(image)
-
-            print(f"Valid Serializer: ", serializer.data)
+            serializer.save()
             message = "You have successfully published your story!"
             return Response({"message": message, "data": serializer.data}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors)
-
-
-# @api_view()
