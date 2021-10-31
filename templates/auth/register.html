@@ -48,13 +48,20 @@ Register
     </div>
 
     <!-- Password Input -->
-    <div class="form-outline mb-4">
+    <div class="form-outline">
         {{ form.password2 }}
         <label class="form-label" for="password">Confirm Password</label>
     </div>
 
+    <span class="text-muted">
+        Have an account already?
+        <a href="{% url "posts:login" %}">
+            Login
+        </a>
+    </span>
+
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+    <button type="submit" class="btn mt-4 btn-primary btn-block mb-4">Sign up</button>
 
 </form>
 {% endblock auth_form %}

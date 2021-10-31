@@ -23,6 +23,13 @@ Login
         <label class="form-label" for="password">Password</label>
     </div>
 
+    <span class="text-muted">
+        Don't have an account?
+        <a href="{% url "posts:register" %}">
+            Register
+        </a>
+    </span>
+
     <!-- Submit button -->
     <button type="submit" class="btn btn-primary btn-block">Sign in</button>
 </form>
