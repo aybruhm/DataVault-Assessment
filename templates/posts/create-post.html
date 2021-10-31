@@ -8,7 +8,7 @@
         <div class="">
             <div class="column large-12">
 
-                <form id="create-new-post-form" method="POST" class="row col-12 mx-auto">
+                <form id="create-new-post-form" method="POST" enctype="multipart/form-data" class="row col-12 mx-auto">
                     {% csrf_token %}
 
                     <div class="form-group">
@@ -59,9 +59,9 @@
 
         var postData = {
             "title": "",
+            "author": "",
             "image": "",
-            "content": "",
-            "author": ""
+            "content": ""
         }
 
         // Form Submit Event Listener
@@ -79,9 +79,6 @@
             // Prints the post data to the browser console
             console.log(postData);
 
-            // Prints post data type of: Debugging purpose
-            console.log(JSON.stringify(postData));
-
             // Axios handles POST request by submit data to the server
             axios({
                     method: "POST",
@@ -90,7 +87,7 @@
                     xsrfHeaderName: "X-CSRFToken",
                     data: JSON.stringify(postData),
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'multipart/form-data',
                         'X-CSRFToken': "csrftoken",
                         'X-Requested-With': 'XMLHttpRequest'
                     }
