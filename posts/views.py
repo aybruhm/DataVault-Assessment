@@ -2,14 +2,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpRequest, HttpResponse, request
+from django.http import HttpRequest, HttpResponse
 from .models import Post
+from .forms import User, UserCreateForm
 
 URL = "http://127.0.0.1:8000"
 
 
 def home_page(request: HttpResponse) -> HttpResponse:
-    
+
     context = {
         "url": URL
     }
@@ -40,7 +41,19 @@ def create_post_page(request: HttpRequest) -> HttpResponse:
 
 
 def register_user(request: HttpRequest) -> HttpResponse:
-    context = {}
+    form = UserCreateForm()
+
+    if request.method == "POST":
+        form = UserCreateForm(request.POST)
+
+        print(form.is_valid)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Account created successfully!")
+            return redirect("posts:login")
+
+    context = {"form": form}
     return render(request, "auth/register.html", context)
 
 
