@@ -23,7 +23,7 @@
         <div class="container">
             {% block auth_form %}
 
-            {% endblock auth_form %}    
+            {% endblock auth_form %}
 
             {% block content %}
 
@@ -33,6 +33,18 @@
 
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="{% static "js/jquery-3.5.0.min.js" %}"></script>
+
+    <!-- Custom JS -->
+    <script src="{% static "js/plugins.js" %}"></script>
+    <script src="{% static "js/main.js" %}"></script>
+
+    {% block inline_js %}{% endblock inline_js %}
 </body>
 
 </html>

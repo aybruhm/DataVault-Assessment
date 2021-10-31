@@ -46,16 +46,13 @@ Create Post
 <script>
     const postForm = document.getElementById("create-new-post-form");
     const postTitle = document.getElementById("post__title");
-    // const postImage = document.getElementById("post_image");
     const postContent = document.getElementById("post_content");
-    const csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].vaule;
 
     const url = "{{ url }}/v1/api/";
 
     var postData = {
         "title": "",
         "author": "",
-        // "image": "",
         "content": ""
     }
 
@@ -67,14 +64,11 @@ Create Post
 
         // Prepopulates post data with data coming from the form
         postData.title = postTitle.value;
-        // postData.image = postImage.files[0].name;
         postData.content = postContent.value;
         postData.author = parseInt("{{ request.user.id }}");
 
         // Prints the post data to the browser console
         console.log(postData);
-        // console.log(postImage);
-        // console.log(postData.image);
 
         // Axios handles POST request by submit data to the server
         axios({
