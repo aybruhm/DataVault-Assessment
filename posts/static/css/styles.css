@@ -2370,11 +2370,17 @@ form#register__form>select {
 
 input#first_name,
 input#last_name,
-input#username {
+input#username,
+input#email_address {
     height: 60px !important;
     width: 100% !important;
-    padding-right: 0% !important;
-    padding-left: 0% !important;
+}
+
+input#first_name:focus,
+input#last_name:focus,
+input#username:focus,
+input#email_address:focus {
+    padding: 10px !important;
 }
 
 form#register__form {
@@ -2389,7 +2395,7 @@ form#register__form {
     }
 }
 
-h2.register__innetext {
+h2.register__innertext {
     text-align: center !important;
     margin-bottom: 40px;
 }
