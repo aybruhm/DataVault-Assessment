@@ -2381,6 +2381,14 @@ form#register__form {
     padding-bottom: 100px !important;
 }
 
+@media screen and (max-width: 786px) {
+    article.brick {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+    }
+}
+
 h2.register__innetext {
     text-align: center !important;
     margin-bottom: 40px;
