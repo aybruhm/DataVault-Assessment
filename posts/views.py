@@ -6,7 +6,7 @@ from django.http import HttpRequest, HttpResponse
 from .models import Post
 from .forms import User, UserCreateForm
 
-URL = "http://127.0.0.1:8000"
+URL = "https://datavault-blog.herokuapp.com"
 
 
 def home_page(request: HttpResponse) -> HttpResponse:
