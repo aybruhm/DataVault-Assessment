@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^k1q*k9ip0vvt*ricq4)wg0jnhb9_m)-$x584gt6sfy!%!3rcu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "127.0.0.1", "datavault-blog.herokuapp.com"
@@ -80,12 +80,31 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG is False:
+    DATABASES = {
+
+        'default': {
+
+            'ENGINE': 'django.db.backends.postgresql',
+
+            'NAME': "d3kavg963rt90i",
+
+            'USER': "cakctskwbzgazn",
+
+            'PASSWORD': "7b971aed3bfb852612425fd58de61b454d91d856a3f9fd56f326b6ea3f205fe1",
+
+            'HOST': "ec2-79-125-30-28.eu-west-1.compute.amazonaws.com",
+
+            'PORT': 5432,
+        }
     }
-}
+elif DEBUG is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3'
+        }
+    }
 
 
 # Password validation
