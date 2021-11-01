@@ -8,6 +8,8 @@ Create Post
 {% block content %}
 <h2 class="register__innetext">Create Post</h2>
 
+<p class="alert alert-success d-none" id="success_post"></p>
+
 <form id="create-new-post-form" method="POST" class="card post__card">
     {% csrf_token %}
 
@@ -48,6 +50,9 @@ Create Post
     const postTitle = document.getElementById("post__title");
     const postContent = document.getElementById("post_content");
 
+    // Success Message Variable
+    const successMsg = document.getElementById("success_post");
+
     const url = "{{ url }}/v1/api/";
 
     var postData = {
@@ -84,7 +89,15 @@ Create Post
                 }
             })
             .then(res => {
-                console.log(res);
+
+                if (res.status === 201 && res.statusText === "Created") {
+                    successMsg.classList.remove("d-none");
+                    successMsg.innerText = res.data.message;
+
+                    // Takes user back to home page
+                    window.location.href = "{% url 'posts:home_page' %}"
+                }
+
             }).catch(err => {
                 console.log(err);
             })
