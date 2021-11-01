@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^k1q*k9ip0vvt*ricq4)wg0jnhb9_m)-$x584gt6sfy!%!3rcu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1", "datavault-blog.herokuapp.com"
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-if DEBUG is False:
+if DEBUG is True:
     DATABASES = {
 
         'default': {
@@ -98,7 +98,7 @@ if DEBUG is False:
             'PORT': 5432,
         }
     }
-elif DEBUG is True:
+elif DEBUG is False:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
