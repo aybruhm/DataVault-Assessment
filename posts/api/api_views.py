@@ -1,10 +1,11 @@
 from rest_framework import status
+from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from posts.models import Post
 from posts.api.serializers import PostSerializer
 from braces.views import CsrfExemptMixin
-from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import AllowAny
 from .authentication import CsrfExemptSessionAuthentication
 
 
@@ -13,7 +14,10 @@ class PostView(CsrfExemptMixin, APIView):
     List all posts, or create a new post.
     """
     authentication_classes = (
-        CsrfExemptSessionAuthentication, BasicAuthentication)
+        CsrfExemptSessionAuthentication)
+    permission_classes = (
+        AllowAny
+    )
 
     def get(self, request):
         posts = Post.objects.all()
